@@ -1,0 +1,8 @@
+1. created next.js
+2. better auth installed
+3. installed mongodb
+4. installed better-auth/mongodb-adapter
+5. mongodb configure in auth.js
+6. created signup page
+7. daisyUI installed
+8. daisyUI imported
