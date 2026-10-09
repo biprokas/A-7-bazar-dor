@@ -24,14 +24,14 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex gap-2">
-        <Button className="bg-white text-black border rounded-sm">
+        <Button className="rounded-xl border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 transition hover:border-green-500 hover:text-green-700">
           সাইন ইন
         </Button>
-        <Button className="bg-green-700 text-white rounded-sm">সাইন আপ</Button>
+        <Button className="rounded-xl bg-green-600 px-6 py-3 font-semibold text-white transition hover:bg-green-700">
+          সাইন আপ
+        </Button>
       </div>
-     
     </header>
-    
   );
 };
 
