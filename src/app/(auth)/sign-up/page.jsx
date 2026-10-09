@@ -27,7 +27,7 @@ const SignUp = () => {
   };
   return (
     <div>
-      {" "}
+       
       <Form className="w-full max-w-96 " onSubmit={onSubmit}>
         <Fieldset>
           <Fieldset.Legend>অ্যাকাউন্ট তৈরি করুন</Fieldset.Legend>

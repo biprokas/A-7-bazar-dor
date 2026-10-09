@@ -11,10 +11,10 @@ const Page = async () => {
   const byCategory = await getProductsByCategory("chal");
   const product = await getProduct(1);
 
-  console.log("categories:", categories);
-  console.log("products:", products);
-  console.log("byCategory:", byCategory);
-  console.log("product:", product);
+  // console.log("categories:", categories);
+  // console.log("products:", products);
+  // console.log("byCategory:", byCategory);
+  // console.log("product:", product);
 
   return <div>Bazar Dor</div>;
 };
