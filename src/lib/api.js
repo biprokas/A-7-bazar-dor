@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.abcz.workers.dev/api/bazardor";
+const BASE_URL = "https://openapi.programming-hero.com/api/bazardor";
 
 export const getCategories = async () => {
   const response = await fetch(`${BASE_URL}/categories`);

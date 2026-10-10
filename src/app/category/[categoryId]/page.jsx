@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { getCategories, getProductsByCategory } from "@/lib/api";
 import CategoryProductList from "@/app/components/category/CategoryProductList";
+import { requireAuth } from "@/lib/require-auth";
 
 const toBanglaNumber = (value) => new Intl.NumberFormat("bn-BD").format(value);
 
 const CategoryPage = async ({ params }) => {
+  await requireAuth();
   const { categoryId } = await params;
 
   const [categoriesResponse, productsResponse] = await Promise.all([

@@ -14,6 +14,27 @@ export default function SignUpPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+
+  const handleGoogleSignUp = async () => {
+    setErrorMessage("");
+    setIsGoogleLoading(true);
+
+    try {
+      const { error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+
+      if (error) {
+        setErrorMessage(error.message || "Google দিয়ে সাইন আপ করা যায়নি।");
+        setIsGoogleLoading(false);
+      }
+    } catch {
+      setErrorMessage("Google দিয়ে সাইন আপ করা যায়নি। আবার চেষ্টা করো।");
+      setIsGoogleLoading(false);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -158,19 +179,59 @@ export default function SignUpPage() {
 
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || isGoogleLoading}
             className="w-full rounded-lg bg-green-600 px-4 py-3 font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isLoading ? "অ্যাকাউন্ট তৈরি হচ্ছে..." : "অ্যাকাউন্ট তৈরি করুন"}
           </button>
+
+          <div className="flex items-center gap-3">
+            <div className="h-px flex-1 bg-gray-200" />
+            <span className="text-sm text-gray-500">অথবা</span>
+            <div className="h-px flex-1 bg-gray-200" />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleGoogleSignUp}
+            disabled={isLoading || isGoogleLoading}
+            className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-3 font-semibold text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {isGoogleLoading ? (
+              "Google-এর সঙ্গে সংযোগ হচ্ছে..."
+            ) : (
+              <>
+                <svg aria-hidden="true" viewBox="0 0 48 48" className="h-5 w-5">
+                  <path
+                    fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 3.06 13.22l7.98 6.19C12.93 13.72 18.02 9.5 24 9.5Z"
+                  />
+                  <path
+                    fill="#4285F4"
+                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.74 7.18l7.73 6C44.43 38.04 46.98 31.88 46.98 24.55Z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M10.04 28.59A14.4 14.4 0 0 1 9.27 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.58 10.78l7.46-6.19Z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.44-4.88 2.3-8.18 2.3-5.98 0-11.07-4.22-12.96-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48Z"
+                  />
+                </svg>
+                Google দিয়ে সাইন আপ করুন
+              </>
+            )}
+          </button>
         </form>
-        <p className="mt-6 text-center text-sm text-gray-600 flex gap-2 justify-center">
-         অ্যাকাউন্ট আছে?
+
+        <p className="mt-6 flex justify-center gap-2 text-center text-sm text-gray-600">
+          অ্যাকাউন্ট আছে?
           <Link
             href="/sign-in"
             className="font-semibold text-green-700 hover:underline"
           >
-           সাইন ইন করুন
+            সাইন ইন করুন
           </Link>
         </p>
       </div>

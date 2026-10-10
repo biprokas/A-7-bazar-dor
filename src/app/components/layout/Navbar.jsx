@@ -51,7 +51,11 @@ const Navbar = () => {
             <span className="hidden text-sm sm:inline">
               {session.user.name || session.user.email}
             </span>
-
+            <Link href="/profile">
+              <Button className="rounded-xl border border-gray-300 bg-white px-4 py-3 font-semibold text-gray-700">
+                আমার প্রোফাইল
+              </Button>
+            </Link>
             <Button
               onPress={handleSignOut}
               className="rounded-xl bg-red-600 px-4 py-3 font-semibold text-white transition hover:bg-red-700"

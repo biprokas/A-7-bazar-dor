@@ -1,27 +1,10 @@
-import {
-  getCategories,
-  getProduct,
-  getProducts,
-  getProductsByCategory,
-} from "@/lib/api";
+import { getProducts } from "@/lib/api";
 import ProductCard from "./components/home/ProductCard";
 import HeroSection from "./components/home/HeroSection";
 
 const toBanglaNumber = (value) => new Intl.NumberFormat("bn-BD").format(value);
 
-    
-
 const Page = async () => {
-  const categories = await getCategories();
-
-  const byCategory = await getProductsByCategory("chal");
-  const product = await getProduct(1);
-
-  // console.log("categories:", categories);
-  // console.log("products:", products);
-  // console.log("byCategory:", byCategory);
-  // console.log("product:", product);
-
   const response = await getProducts();
   const products = Array.isArray(response)
     ? response
@@ -43,9 +26,8 @@ const Page = async () => {
     .slice(0, 6);
 
   return (
-    
     <main className=" space-y-12 px-4 py-10">
-      <HeroSection/>
+      <HeroSection />
       {/* Today's price increases */}
       <section id="price-movers">
         <h2 className="mb-5 text-2xl font-bold text-gray-900">

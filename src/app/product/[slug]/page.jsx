@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getProduct } from "@/lib/api";
+import { requireAuth } from "@/lib/require-auth";
 
 const toBanglaNumber = (value) =>
   new Intl.NumberFormat("bn-BD", {
@@ -7,6 +8,8 @@ const toBanglaNumber = (value) =>
   }).format(value);
 
 const ProductDetailsPage = async ({ params }) => {
+  await requireAuth();
+
   const { slug } = await params;
 
   let response;

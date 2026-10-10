@@ -1,5 +1,4 @@
 import { getProducts } from "@/lib/api";
-import React from "react";
 
 const toBanglaNumber = (value) =>
   new Intl.NumberFormat("bn-BD", {
@@ -9,8 +8,8 @@ const PriceTicker = async () => {
   const res = await getProducts();
   const products = Array.isArray(res) ? res : [];
   return (
-    <div className="animate-marquee w-max  overflow-hidden border-b border-gray-200 bg-gray-50 py-3">
-      <div className="flex items-center gap-8">
+    <div className="w-full overflow-hidden border-b border-gray-200 bg-gray-50 py-3">
+      <div className="animate-marquee flex w-max items-center gap-8">
         {[...products, ...products].map((product, index) => (
           <div
             key={`${product.id}-${index}`}
