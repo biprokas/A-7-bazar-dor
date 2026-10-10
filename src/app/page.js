@@ -4,10 +4,12 @@ import {
   getProducts,
   getProductsByCategory,
 } from "@/lib/api";
-import HeroSection from "./components/home/HeroSection";
 import ProductCard from "./components/home/ProductCard";
+import HeroSection from "./components/home/HeroSection";
 
 const toBanglaNumber = (value) => new Intl.NumberFormat("bn-BD").format(value);
+
+    
 
 const Page = async () => {
   const categories = await getCategories();
@@ -41,7 +43,9 @@ const Page = async () => {
     .slice(0, 6);
 
   return (
+    
     <main className=" space-y-12 px-4 py-10">
+      <HeroSection/>
       {/* Today's price increases */}
       <section id="price-movers">
         <h2 className="mb-5 text-2xl font-bold text-gray-900">

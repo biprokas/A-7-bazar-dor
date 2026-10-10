@@ -51,7 +51,6 @@ const HeroSection = () => {
       </div>
 
       {/* price increased */}
-      
     </section>
   );
 };

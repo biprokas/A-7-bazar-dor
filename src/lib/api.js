@@ -23,9 +23,7 @@ export const getProducts = async () => {
 };
 
 export const getProductsByCategory = async (category) => {
-  const response = await fetch(
-    `${BASE_URL}/products?category=${category}`,
-  );
+  const response = await fetch(`${BASE_URL}/products?category=${category}`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch products by category");

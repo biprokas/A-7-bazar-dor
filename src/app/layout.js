@@ -4,6 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import CategoryNav from "./components/layout/CategoryNav";
 import PriceTicker from "./components/layout/PriceTicker";
 import Footer from "./components/layout/Footer";
+import HeroSection from "./components/home/HeroSection";
 
 const anekBangla = Anek_Bangla({
   subsets: ["bengali", "latin"],
@@ -19,10 +20,11 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${anekBangla.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col container mx-auto">
         <Navbar />
-        <CategoryNav/>
-        <PriceTicker/>
+        <CategoryNav />
+        <PriceTicker />
+       
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
