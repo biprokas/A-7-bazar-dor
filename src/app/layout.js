@@ -4,8 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import CategoryNav from "./components/layout/CategoryNav";
 import PriceTicker from "./components/layout/PriceTicker";
 import Footer from "./components/layout/Footer";
-import HeroSection from "./components/home/HeroSection";
-
+import { AppToast } from "./components/ui/AppToast";
 const anekBangla = Anek_Bangla({
   subsets: ["bengali", "latin"],
 });
@@ -21,6 +20,7 @@ export default function RootLayout({ children }) {
         <div className="container mx-auto w-full">
           <Navbar />
         </div>
+        <AppToast />
 
         <CategoryNav />
         <PriceTicker />

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { toastQueue } from "../ui/AppToast";
 
 const Navbar = () => {
   const router = useRouter();
@@ -15,15 +16,34 @@ const Navbar = () => {
   });
 
   const handleSignOut = async () => {
-    const { error } = await authClient.signOut();
+    try {
+      const { error } = await authClient.signOut();
 
-    if (error) {
-      alert("লগ আউট করা যায়নি। আবার চেষ্টা করো।");
-      return;
+      if (error) {
+        toastQueue.add({
+          title: "লগ আউট ব্যর্থ",
+          description: "লগ আউট করা যায়নি। আবার চেষ্টা করো।",
+          variant: "default",
+        });
+
+        return;
+      }
+
+      toastQueue.add({
+        title: "লগ আউট সফল!",
+        description: "তুমি সফলভাবে অ্যাকাউন্ট থেকে লগ আউট করেছ।",
+        variant: "default",
+      });
+
+      router.push("/sign-in");
+      router.refresh();
+    } catch {
+      toastQueue.add({
+        title: "লগ আউট ব্যর্থ",
+        description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করো।",
+        variant: "default",
+      });
     }
-
-    router.push("/sign-in");
-    router.refresh();
   };
 
   return (

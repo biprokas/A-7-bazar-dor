@@ -8,7 +8,6 @@ const CategoryNav = async () => {
   return (
     <div className="border-b border-gray-200 bg-white ">
       <div className="mx-auto flex max-w-7xl items-center gap-6 overflow-x-auto px-4 py-3">
-        
         {categories.map((category) => (
           <Link
             key={category.id}
